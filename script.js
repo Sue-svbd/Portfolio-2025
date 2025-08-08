@@ -119,6 +119,80 @@ document.addEventListener("DOMContentLoaded", function () {
     typeText(mainLinkProcessEl, mainLinkProcessText, 50);
   }
 
+  // Home page: toggle Selected work accordion
+  const toggleBtn = document.querySelector(".js-toggle-work");
+  const panel = document.getElementById("selected-work-panel");
+  if (toggleBtn && panel) {
+    // use hidden attribute and aria-expanded for accessibility
+    const setOpen = (isOpen) => {
+      toggleBtn.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) {
+        panel.hidden = false;
+        panel.setAttribute("aria-hidden", "false");
+        panel.classList.add("is-open");
+        document.body.classList.add("work-open"); // trigger bg transition
+      } else {
+        panel.setAttribute("aria-hidden", "true");
+        panel.classList.remove("is-open");
+        document.body.classList.remove("work-open");
+        // wait for animation then hide for layout
+        setTimeout(() => {
+          panel.hidden = true;
+        }, 300);
+      }
+    };
+    toggleBtn.addEventListener("click", () => {
+      const open = toggleBtn.getAttribute("aria-expanded") === "true";
+      // close process if open
+      if (!open) closeProcess();
+      setOpen(!open);
+    });
+  }
+
+  // Process accordion toggle
+  const processBtn = document.querySelector(".js-toggle-process");
+  const processPanel = document.getElementById("process-panel");
+  function setProcessOpen(isOpen) {
+    if (!processBtn || !processPanel) return;
+    processBtn.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      processPanel.hidden = false;
+      processPanel.setAttribute("aria-hidden", "false");
+      processPanel.classList.add("is-open");
+      // fade bg to white by removing overlay tint
+      document.body.classList.add("process-open");
+      document.body.classList.remove("work-open");
+    } else {
+      processPanel.setAttribute("aria-hidden", "true");
+      processPanel.classList.remove("is-open");
+      document.body.classList.remove("process-open");
+      setTimeout(() => {
+        processPanel.hidden = true;
+      }, 300);
+    }
+  }
+  function closeProcess() {
+    setProcessOpen(false);
+  }
+  if (processBtn && processPanel) {
+    processBtn.addEventListener("click", () => {
+      const open = processBtn.getAttribute("aria-expanded") === "true";
+      // close work if opening process
+      if (!open) {
+        if (toggleBtn && panel) {
+          toggleBtn.setAttribute("aria-expanded", "false");
+          panel.classList.remove("is-open");
+          panel.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("work-open");
+          setTimeout(() => {
+            panel.hidden = true;
+          }, 300);
+        }
+      }
+      setProcessOpen(!open);
+    });
+  }
+
   // Add keyboard navigation support
   document.addEventListener("keydown", function (e) {
     if (e.key === "Tab") {

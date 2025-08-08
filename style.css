@@ -4,9 +4,8 @@
   box-sizing: border-box;
 }
 .container {
-  max-width: 1780px;
   margin: 0 auto;
-  padding: 64px 0;
+  padding: 64px 64px;
   position: relative;
   z-index: 1;
 }
@@ -329,8 +328,8 @@ body.work-bg::before {
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(173, 98, 234, 0.6)),
     url("assets/JJJ.jpg") center center/cover no-repeat;
-    z-index: 0;
-    opacity: 0.5;
+  z-index: 0;
+  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -501,6 +500,7 @@ body.work-bg::before {
   scroll-snap-type: x mandatory;
   padding-left: var(--carousel-pad); /* visual left space */
   padding-right: 0;
+  margin: 0px 0px 97px;
   scroll-padding-left: var(--carousel-pad); /* snap respects the left space */
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
@@ -637,7 +637,18 @@ body.work-bg::before {
 
 /* Adjust overlay opacity on mobile for better readability */
 body::before {
-  background-color: rgba(74, 74, 74, 0.514);
+  background-color: rgba(74, 74, 74, 0.85);
+  transition: background-color 600ms ease; /* smooth mutate */
+}
+
+/* When Selected work accordion is open on the homepage */
+body.work-open::before {
+  background-color: rgba(215, 110, 110, 0.51); /* #d76e6e83 */
+}
+
+/* When Process accordion is open: fade to white */
+body.process-open::before {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 body.no-bg {
@@ -723,4 +734,55 @@ body.work-bg {
   .work-list {
     top: auto;
   }
+}
+
+/* Accordion panel */
+.accordion-panel {
+  display: block;
+  overflow: hidden;
+  max-height: 0; /* fully collapsed */
+  opacity: 0;
+  transition: max-height 700ms ease, opacity 700ms ease; /* slower, smooth */
+  margin: 0;
+  margin-top: 24px;
+  /* no extra spacing when closed */
+  padding: 0; /* no side padding added here */
+}
+.accordion-panel[aria-hidden="false"],
+.accordion-panel.is-open {
+  max-height: 1200px; /* expand to fit content; adjust if needed */
+  opacity: 1;
+  margin-top: 24px;
+}
+.accordion-panel > * {
+  min-height: 0;
+}
+
+/* Make it full-bleed horizontally to match carousel */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* Make the Selected work button look like a link */
+.nav-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  text-align: left;
+  flex-direction: row;
+  align-items: center;
+  display: block;
+  color: #d9d4ff;
+  text-decoration: none;
+  font-size: 2.5rem;
+  font-weight: 300;
+  font-size: 64px;
+  transition: color 0.3s ease;
+  position: relative;
 }

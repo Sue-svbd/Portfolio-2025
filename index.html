@@ -39,16 +39,185 @@
       </section>
 
       <nav class="navigation-links">
-        <a href="work.html" class="nav-link">
+        <button
+          type="button"
+          class="nav-link nav-button js-toggle-work"
+          aria-expanded="false"
+        >
           <span class="nav-text">Selected work</span>
           <span class="arrow">↗</span>
-        </a>
+        </button>
 
-        
-        <a href="process.html" class="nav-link">
+        <!-- Accordion panel: selected work carousel (moved inside nav) -->
+        <section
+          id="selected-work-panel"
+          class="accordion-panel full-bleed"
+          hidden
+          aria-hidden="true"
+        >
+          <div class="work-carousel">
+            <div class="work-card">
+              <div class="work-card-text">
+                <div class="work-caption">Platform – Binkies 3D</div>
+                <div class="work-tags-row">
+                  <span class="work-tag">UI/UX</span>
+                  <span class="work-tag">Front-end</span>
+                </div>
+                <a href="#" class="work-learn-more"
+                  >Learn more <span class="arrow">→</span></a
+                >
+              </div>
+              <img
+                src="assets/platform Binkies.jpg"
+                alt="Platform - Binkies 3D"
+                class="work-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="work-card work-card--reverse">
+              <img
+                src="assets/Studio.png"
+                alt="Studio 3D - Binkies 3D"
+                class="work-img"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="work-card-text">
+                <div class="work-caption">Studio 3D – Binkies 3D</div>
+                <div class="work-tags-row">
+                  <span class="work-tag">UI/UX</span>
+                  <span class="work-tag">Front-end</span>
+                </div>
+                <a href="#" class="work-learn-more"
+                  >Learn more <span class="arrow">→</span></a
+                >
+              </div>
+            </div>
+            <div class="work-card">
+              <div class="work-card-text">
+                <div class="work-caption">SalaryApp – Incentro</div>
+                <div class="work-tags-row">
+                  <span class="work-tag">UI/UX</span>
+                  <span class="work-tag">Front-end</span>
+                </div>
+                <a href="#" class="work-learn-more"
+                  >Learn more <span class="arrow">→</span></a
+                >
+              </div>
+              <img
+                src="assets/SalaryApp.webp"
+                alt="SalaryApp redesign - Incentro"
+                class="work-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="work-card work-card--reverse">
+              <img
+                src="assets/DIVA.png"
+                alt="DIVA - Gemeente van Rotterdam"
+                class="work-img"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="work-card-text">
+                <div class="work-caption">DIVA – Gemeente van Rotterdam</div>
+                <div class="work-tags-row">
+                  <span class="work-tag">UI/UX</span>
+                  <span class="work-tag">Front-end</span>
+                </div>
+                <a href="#" class="work-learn-more"
+                  >Learn more <span class="arrow">→</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <button
+          type="button"
+          class="nav-link nav-button js-toggle-process"
+          aria-expanded="false"
+        >
           <span class="nav-text">My design process</span>
           <span class="arrow">↗</span>
-        </a>
+        </button>
+        <section
+          id="process-panel"
+          class="accordion-panel"
+          hidden
+          aria-hidden="true"
+        >
+          <div class="process-container">
+            <section class="process-steps">
+              <div class="process-step">
+                <div class="process-step-left">
+                  <span class="process-step-number">1.</span>
+                  <div class="process-step-title">
+                    DISCOVERY & DIAGNOSIS: UNDERSTANDING THE SYSTEM
+                  </div>
+                </div>
+                <div class="process-step-right">
+                  <p class="process-step-desc">
+                    I start with a deep, analytical dive to define the core
+                    problem. This involves user research and the use of tools
+                    like Hotjar to track existing user behavior, gathering
+                    concrete data on pain points and opportunities.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="process-step-left">
+                  <span class="process-step-number">2.</span>
+                  <div class="process-step-title">
+                    ARCHITECTURE & IDEATION: STRUCTURING THE SOLUTION
+                  </div>
+                </div>
+                <div class="process-step-right">
+                  <p class="process-step-desc">
+                    With a clear understanding of the problem, I begin
+                    architecting the solution. This starts with low-fidelity
+                    wireframes and user flows to map the optimal path for the
+                    user. I focus purely on UX at this stage.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="process-step-left">
+                  <span class="process-step-number">3.</span>
+                  <div class="process-step-title">
+                    PROTOTYPING & VALIDATION: MAKING IDEAS INTERACTIVE
+                  </div>
+                </div>
+                <div class="process-step-right">
+                  <p class="process-step-desc">
+                    I transform the wireframes into interactive prototypes for
+                    team review and user testing. Leveraging my coding skills,
+                    these are often high-fidelity mockups or even functional
+                    websites, allowing for realistic feedback.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="process-step-left">
+                  <span class="process-step-number">4.</span>
+                  <div class="process-step-title">
+                    EXECUTION & ITERATION: CRAFTING THE EXPERIENCE
+                  </div>
+                </div>
+                <div class="process-step-right">
+                  <p class="process-step-desc">
+                    Once the UX is locked in, I design the final, pixel-perfect
+                    UI, focusing on creating an elegant and human-centric
+                    aesthetic. After launch, I gather user feedback and
+                    performance data to inform the next cycle of improvements.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
       </nav>
 
       <section class="about-section">
