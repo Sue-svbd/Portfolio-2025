@@ -327,9 +327,10 @@ body.work-bg::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background:linear-gradient(rgba(0, 0, 0, 0.6), rgba(173, 98, 234, 0.6)), url("assets/JJJ.jpg") center center/cover no-repeat;
-  opacity: 0.7;
-  z-index: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(173, 98, 234, 0.6)),
+    url("assets/JJJ.jpg") center center/cover no-repeat;
+    z-index: 0;
+    opacity: 0.5;
   pointer-events: none;
 }
 
@@ -341,11 +342,18 @@ body.work-bg::before {
   z-index: 1;
 }
 
+.work-caption {
+  font-size: 32px;
+}
+
+.work-description {
+  margin: 64px;
+}
 .work-title {
   font-family: "Cutive", serif;
   font-size: 3.5rem;
   color: #111;
-  margin: 48px 0px;
+  margin: 48px 64px;
   font-weight: 400;
   text-align: left;
 }
@@ -482,8 +490,8 @@ body.work-bg::before {
 
 :root {
   --carousel-pad: 64px;
-  --carousel-gap: 32px;
-  --card-width: 520px; /* visual width for each card */
+  --carousel-gap: 52px;
+  --card-width: 900px; /* visual width for each card */
 }
 
 .work-carousel {
@@ -495,6 +503,8 @@ body.work-bg::before {
   padding-right: 0;
   scroll-padding-left: var(--carousel-pad); /* snap respects the left space */
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
 /* Remove leading ::before if present to avoid double spacing */

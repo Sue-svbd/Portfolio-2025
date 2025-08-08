@@ -14,7 +14,13 @@
       href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="preload"
+      href="style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="style.css" /></noscript>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   </head>
@@ -29,6 +35,14 @@
         ></a>
       </div>
       <h1 class="work-title">Selected works</h1>
+      <p class="description-text work-description">
+        My goal with every project is to refine the process and, hopefully, get
+        things a little less wrong next time. The biggest lessons are rarely
+        about a new tool, but about the human side of things—getting better at
+        asking questions, hearing what people really mean by their feedback, and
+        working smoothly as a team. I don't just want to complete a project; I
+        want it to make me better for the next one.
+      </p>
       <div class="work-carousel">
         <div class="work-card reveal-on-scroll">
           <div class="work-card-text">
@@ -45,6 +59,8 @@
             src="assets/platform Binkies.jpg"
             alt="Platform - Binkies 3D"
             class="work-img"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div class="work-card work-card--reverse reveal-on-scroll">
@@ -52,6 +68,8 @@
             src="assets/Studio.png"
             alt="Studio 3D - Binkies 3D"
             class="work-img"
+            loading="lazy"
+            decoding="async"
           />
           <div class="work-card-text">
             <div class="work-caption">Studio 3D – Binkies 3D</div>
@@ -79,6 +97,8 @@
             src="assets/SalaryApp.webp"
             alt="SalaryApp redesign - Incentro"
             class="work-img"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div class="work-card work-card--reverse reveal-on-scroll">
@@ -86,6 +106,8 @@
             src="assets/DIVA.png"
             alt="DIVA - Gemeente van Rotterdam"
             class="work-img"
+            loading="lazy"
+            decoding="async"
           />
           <div class="work-card-text">
             <div class="work-caption">DIVA – Gemeente van Rotterdam</div>
