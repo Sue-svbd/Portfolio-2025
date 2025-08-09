@@ -4,12 +4,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".nav-link");
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      // Add a subtle click animation
-      this.style.transform = "translateX(15px) scale(0.98)";
-      setTimeout(() => {
-        this.style.transform = "";
-      }, 150);
+    link.addEventListener("mousedown", () => {
+      link.classList.add("is-pressed");
+    });
+    link.addEventListener("mouseup", () => {
+      link.classList.remove("is-pressed");
+    });
+    link.addEventListener("mouseleave", () => {
+      link.classList.remove("is-pressed");
+    });
+    link.addEventListener("click", () => {
+      link.classList.add("is-pressed");
+      setTimeout(() => link.classList.remove("is-pressed"), 160);
     });
   });
 
@@ -158,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isOpen) {
       processPanel.hidden = false;
       processPanel.setAttribute("aria-hidden", "false");
-      processPanel.classList.add("is-open");
+      processPanel.classList.add("work-is-open");
       // fade bg to white by removing overlay tint
       document.body.classList.add("process-open");
       document.body.classList.remove("work-open");

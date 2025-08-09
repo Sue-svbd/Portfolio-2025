@@ -54,7 +54,9 @@ p {
 }
 
 .title .highlight {
-  font-size: 96px;
+  font-size: 120px;
+  font-weight: 700;
+  letter-spacing: -8px;
 }
 
 .highlight {
@@ -103,7 +105,7 @@ p {
   font-size: 2.5rem;
   font-weight: 300;
   font-size: 64px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
   position: relative;
 }
 
@@ -194,14 +196,12 @@ body > main > section.about-section > h2 {
 .process-container {
   position: relative;
   z-index: 1;
+  padding-top: 2px;
+  margin-top: 24px;
 }
 
 .process-container::before {
   display: none;
-}
-
-.process-container {
-  background: #fff !important;
 }
 
 .process-container,
@@ -226,7 +226,7 @@ body > main > section.about-section > h2 {
 .process-steps {
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 100px;
   margin-bottom: 64px;
 }
 
@@ -241,6 +241,7 @@ body > main > section.about-section > h2 {
   position: relative;
   display: flex;
   align-items: flex-start;
+  width: 480px;
 }
 
 .process-step-number {
@@ -248,7 +249,7 @@ body > main > section.about-section > h2 {
   left: 0;
   top: 22px;
   z-index: 0;
-  font-size: 120px;
+  font-size: 180px;
   font-family: "Inter", sans-serif;
   font-weight: 700;
   color: #b6f5d8;
@@ -261,7 +262,7 @@ body > main > section.about-section > h2 {
   z-index: 1;
   margin-left: 48px;
   font-family: "Cutive", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #2a2aff;
   text-transform: uppercase;
@@ -278,10 +279,10 @@ body > main > section.about-section > h2 {
 
 .process-step-desc {
   font-family: "Inter", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: #111;
   text-align: right;
-  max-width: 520px;
+  max-width: 1210px;
   margin: 0;
 }
 
@@ -380,6 +381,36 @@ body.work-bg::before {
   }
 }
 
+@media (max-width: 430px) {
+  .title .highlight {
+    font-size: 42px;
+  }
+
+  .description-text,
+  .about-text p,
+  .nav-text.music-link {
+    font-size: 16px;
+  }
+
+  .nav-text,
+  body > main > section.about-section > h2 {
+    font-size: 32px;
+    margin-right: 0;
+  }
+
+  .hero-section,
+  .description {
+    margin-bottom: 32px;
+  }
+
+  .title .highlight {
+    font-size: 80px;
+    letter-spacing: -7px;
+    font-weight: 600;
+    line-height: 57px;
+  }
+}
+
 .main-link-home,
 .main-link-work,
 .main-link-process {
@@ -432,6 +463,32 @@ body.work-bg::before {
   .work-grid {
     grid-template-columns: 1fr;
     gap: 48px 0;
+  }
+}
+
+@media (max-width: 1810px) {
+  .process-step-desc {
+    font-size: 1.3rem;
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .process-step-desc {
+    font-size: 1.2rem;
+    max-width: 450px;
+  }
+  body.process-open .description-text,
+  body.process-open .about-text p {
+    font-size: 1.2rem;
+  }
+
+  .process-step-title {
+    font-size: 1.4rem;
+  }
+
+  .process-step-number {
+    font-size: 130px;
   }
 }
 
@@ -643,7 +700,7 @@ body::before {
 
 /* When Selected work accordion is open on the homepage */
 body.work-open::before {
-  background-color: rgba(215, 110, 110, 0.51); /* #d76e6e83 */
+  background-color: #ffe9b9a1; /* #d76e6e83 */
 }
 
 /* When Process accordion is open: fade to white */
@@ -688,7 +745,8 @@ html {
   }
 }
 
-.accent {
+.accent,
+.typed-greeting {
   font-family: "Cutive", sans-serif;
 }
 
@@ -775,6 +833,7 @@ body.work-bg {
   cursor: pointer;
   display: flex;
   text-align: left;
+  display: flex;
   flex-direction: row;
   align-items: center;
   display: block;
@@ -785,4 +844,68 @@ body.work-bg {
   font-size: 64px;
   transition: color 0.3s ease;
   position: relative;
+}
+
+.work-is-open {
+  width: 100%;
+}
+
+/* Smoother press animation for nav links/buttons */
+.nav-link.is-pressed {
+  transform: translateX(6px) scale(0.99);
+}
+
+/* Arrow rotation for accordion toggles */
+.nav-button .arrow {
+  display: inline-block;
+  transition: transform 600ms ease;
+  transform-origin: 50% 50%;
+}
+.nav-button[aria-expanded="true"] .arrow {
+  transform: rotate(90deg);
+}
+
+/* Color scheme shift when Process accordion is open */
+body.process-open .title,
+body.process-open .typed-title,
+body.process-open .highlight,
+body.process-open .nav-link,
+body.process-open .about-section h2,
+body.process-open .accent,
+body.process-open .typed-greeting {
+  color: #923399 !important;
+  transition: color 600ms ease;
+}
+
+body.work-open .title,
+body.work-open .typed-title,
+body.work-open .highlight,
+body.work-open .nav-link,
+body.work-open .about-section h2,
+body.work-open .accent,
+body.work-open .typed-greeting {
+  color: #923399 !important;
+  transition: color 600ms ease;
+}
+
+body.process-open .description-text,
+body.work-open .description-text {
+  color: #000000 !important;
+  transition: color 600ms ease;
+}
+body.process-open .about-text,
+body.work-open .about-text {
+  color: #000000 !important;
+  transition: color 600ms ease;
+}
+
+/* Remove page background image when Selected work is open */
+body.work-open {
+  background-image: none !important; /* in case image is on body */
+}
+
+/* If you ever moved the image to ::after, hide it too */
+body.work-open::after {
+  opacity: 0 !important;
+  pointer-events: none;
 }
