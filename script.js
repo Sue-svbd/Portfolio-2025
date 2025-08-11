@@ -135,16 +135,32 @@ document.addEventListener("DOMContentLoaded", function () {
       if (isOpen) {
         panel.hidden = false;
         panel.setAttribute("aria-hidden", "false");
+        // measure content height and animate
+        const contentHeight = panel.scrollHeight;
+        panel.style.height = "0px";
         panel.classList.add("is-open");
-        document.body.classList.add("work-open"); // trigger bg transition
+        requestAnimationFrame(() => {
+          panel.style.height = contentHeight + "px";
+        });
+        const onEnd = () => {
+          panel.style.height = "auto";
+          panel.removeEventListener("transitionend", onEnd);
+        };
+        panel.addEventListener("transitionend", onEnd);
+        document.body.classList.add("work-open");
       } else {
+        // collapse to height 0
+        const currentHeight = panel.scrollHeight;
+        panel.style.height = currentHeight + "px";
+        requestAnimationFrame(() => {
+          panel.style.height = "0px";
+        });
         panel.setAttribute("aria-hidden", "true");
         panel.classList.remove("is-open");
         document.body.classList.remove("work-open");
-        // wait for animation then hide for layout
         setTimeout(() => {
           panel.hidden = true;
-        }, 300);
+        }, 700);
       }
     };
     toggleBtn.addEventListener("click", () => {
@@ -164,17 +180,31 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isOpen) {
       processPanel.hidden = false;
       processPanel.setAttribute("aria-hidden", "false");
-      processPanel.classList.add("work-is-open");
-      // fade bg to white by removing overlay tint
+      const h = processPanel.scrollHeight;
+      processPanel.style.height = "0px";
+      processPanel.classList.add("is-open");
+      requestAnimationFrame(() => {
+        processPanel.style.height = h + "px";
+      });
+      const onEnd = () => {
+        processPanel.style.height = "auto";
+        processPanel.removeEventListener("transitionend", onEnd);
+      };
+      processPanel.addEventListener("transitionend", onEnd);
       document.body.classList.add("process-open");
       document.body.classList.remove("work-open");
     } else {
+      const h = processPanel.scrollHeight;
+      processPanel.style.height = h + "px";
+      requestAnimationFrame(() => {
+        processPanel.style.height = "0px";
+      });
       processPanel.setAttribute("aria-hidden", "true");
       processPanel.classList.remove("is-open");
       document.body.classList.remove("process-open");
       setTimeout(() => {
         processPanel.hidden = true;
-      }, 300);
+      }, 700);
     }
   }
   function closeProcess() {
