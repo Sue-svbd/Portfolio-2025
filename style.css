@@ -249,7 +249,7 @@ body > main > section.about-section > h2 {
   left: 0;
   top: 22px;
   z-index: 0;
-  font-size: 180px;
+  font-size: 7rem;
   font-family: "Inter", sans-serif;
   font-weight: 700;
   color: #b6f5d8;
@@ -262,7 +262,7 @@ body > main > section.about-section > h2 {
   z-index: 1;
   margin-left: 48px;
   font-family: "Cutive", sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #2a2aff;
   text-transform: uppercase;
@@ -351,11 +351,17 @@ body.work-bg::before {
 }
 .work-title {
   font-family: "Cutive", serif;
-  font-size: 3.5rem;
-  color: #111;
-  margin: 48px 64px;
+  font-size: 1.5rem;
+  color: #2a2aff;
+  margin-top: 90px;
   font-weight: 400;
   text-align: left;
+}
+
+.work-title,
+.work-tags-row,
+.work-learn-more {
+  margin-left: 64px;
 }
 
 .work-top-links {
@@ -700,7 +706,7 @@ body::before {
 
 /* When Selected work accordion is open on the homepage */
 body.work-open::before {
-  background-color: #ffe9b9a1; /* #d76e6e83 */
+  background-color: white; /* #d76e6e83 */
 }
 
 /* When Process accordion is open: fade to white */
@@ -798,25 +804,24 @@ body.work-bg {
 .accordion-panel {
   display: block;
   overflow: hidden;
-  max-height: 0; /* fully collapsed */
+  height: 0; /* collapsed */
   opacity: 0;
-  transition: max-height 700ms ease, opacity 700ms ease; /* slower, smooth */
-  margin: 0;
-  margin-top: 24px;
-  /* no extra spacing when closed */
-  padding: 0; /* no side padding added here */
+  transition: height 700ms ease, opacity 700ms ease;
+  margin: 0; /* no extra spacing */
+  padding: 0;
 }
 .accordion-panel[aria-hidden="false"],
 .accordion-panel.is-open {
-  max-height: 1200px; /* expand to fit content; adjust if needed */
+  /* height set inline via JS to content height, then to auto on transition end */
   opacity: 1;
-  margin-top: 24px;
+  width: 100%;
+  margin-top: 64px;
 }
 .accordion-panel > * {
   min-height: 0;
 }
 
-/* Make it full-bleed horizontally to match carousel */
+/* Make it full-bleed horizontally to match carousel if used */
 .full-bleed {
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -908,4 +913,76 @@ body.work-open {
 body.work-open::after {
   opacity: 0 !important;
   pointer-events: none;
+}
+
+/* Selected works timeline layout */
+.selected-works {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+/* slight overlap between items */
+.selected-work + .selected-work {
+  margin-top: -12px;
+}
+.selected-work-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.selected-work {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.work-year {
+  font-family: "Inter", sans-serif;
+  font-size: 7rem;
+  color: #b6f5d8;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.selected-work-right .work-img {
+  width: 100%;
+  max-width: 760px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 1100px) {
+  .selected-work {
+    grid-template-columns: 1fr;
+  }
+  .selected-work-right .work-img {
+    max-width: 100%;
+  }
+}
+
+/* Overlapping year/title */
+.overlapping-title {
+  position: relative;
+  line-height: 1;
+}
+.overlapping-title .work-year {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.overlapping-title .work-title {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1100px) {
+  .overlapping-title .work-year {
+    top: -4px;
+  }
 }
