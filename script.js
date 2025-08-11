@@ -128,6 +128,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // Home page: toggle Selected work accordion
   const toggleBtn = document.querySelector(".js-toggle-work");
   const panel = document.getElementById("selected-work-panel");
+  
+  // Define closeWork function outside the if block so it's accessible globally
+  function closeWork() {
+    if (toggleBtn && panel) {
+      const workOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+      if (workOpen) {
+        setOpen(false);
+      }
+    }
+  }
+  
   if (toggleBtn && panel) {
     // use hidden attribute and aria-expanded for accessibility
     const setOpen = (isOpen) => {
@@ -139,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const contentHeight = panel.scrollHeight;
         panel.style.height = "0px";
         panel.classList.add("is-open");
+        document.body.classList.add("work-open");
         requestAnimationFrame(() => {
           panel.style.height = contentHeight + "px";
         });
@@ -160,9 +172,18 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.remove("work-open");
         setTimeout(() => {
           panel.hidden = true;
-        }, 700);
+        }, 300);
       }
     };
+    
+    // Update closeWork to use the local setOpen function
+    closeWork = function() {
+      const workOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+      if (workOpen) {
+        setOpen(false);
+      }
+    };
+    
     toggleBtn.addEventListener("click", () => {
       const open = toggleBtn.getAttribute("aria-expanded") === "true";
       // close process if open
@@ -180,6 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isOpen) {
       processPanel.hidden = false;
       processPanel.setAttribute("aria-hidden", "false");
+      processPanel.classList.add("work-is-open");
       const h = processPanel.scrollHeight;
       processPanel.style.height = "0px";
       processPanel.classList.add("is-open");
@@ -204,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.classList.remove("process-open");
       setTimeout(() => {
         processPanel.hidden = true;
-      }, 700);
+      }, 300);
     }
   }
   function closeProcess() {
@@ -213,17 +235,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (processBtn && processPanel) {
     processBtn.addEventListener("click", () => {
       const open = processBtn.getAttribute("aria-expanded") === "true";
-      // close work if opening process
+      // close work if opening process - use proper closeWork function
       if (!open) {
-        if (toggleBtn && panel) {
-          toggleBtn.setAttribute("aria-expanded", "false");
-          panel.classList.remove("is-open");
-          panel.setAttribute("aria-hidden", "true");
-          document.body.classList.remove("work-open");
-          setTimeout(() => {
-            panel.hidden = true;
-          }, 300);
-        }
+        closeWork(); // This will properly animate the selected work panel closed
       }
       setProcessOpen(!open);
     });
